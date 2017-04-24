@@ -1,0 +1,9 @@
+- generate `index.md` contents from one yaml-file per library
+  - can one hook into `mkdocs`?
+- rss feed
+- add contents
+- layout
+  - remove left toc
+  - remove footer
+  - link Contributing in the header
+- host as gh-page
