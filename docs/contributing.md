@@ -8,39 +8,48 @@
 
 ## Guidelines
 
-Sections and entries within a section are sorted alphabetically.
+Each catalogue item is defined in a YAML document with a mappping as top-level
+object that is located in the `items` directory. The following fields must be
+provided:
 
-There can be an initial paragraph for a sequence of any of these badges:
+- `name`
+  - as on the PyPI
+- `section`
+  - all words must be capitalized
+- `subsection`
+  - same here
+- `description`
+  - the `name` value must be mentioned at least once, this wille be used as
+    hyperlink text
+  - describes functionality, design aspects and background
+  - should be at most seven sentences
 
-- License
-- Recent version on the PyPI
-- Supported Python versions
-- Package's maturity
-- Github (or alike) stars
-- Github (or alike) number of contributors
-- Github (or alike) forks
 
-A mandatory abstract in one paragraph containing at most seven sentences
-describes functionality, design aspects and background of a library.
+If there is a documentation resource available as web page, it's URL must
+be included:
 
-The first mention of the library's name is to be used as link text for the
-reference to its page on the PyPI.
+- `docs_url`
+  - preferably with `https` as protocol
 
-There should be a closing paragraph that contains a hyperlink to the
-documentation with the text `documentation` and one to the  with the text
-- well - `code repository` separated by an n-dash.
+If the source code is hosted on [GitHub](https://github.com), this is also
+mandatory:
 
-The maximum amount of characters per line is eighty.
-
-Exceptions are a great way to handle what doesn't fit the usual.
+- `github_repo`
+  - `<username>/<repository_name`
 
 
 ## Building
 
-```shell
-pip install -r requirements.txt
-mkdocs serve
-```
+Installing the required packages:
+
+    pip install -r requirements.txt
+
+Building the web page:
+
+    make
+    # or if GNU make is not available:   :-(
+    ./generate-docs.py
+    mkdocs build
 
 
 *[PyPI]: Python Package Index

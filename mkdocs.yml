@@ -1,9 +1,8 @@
 site_name: Python for the Humanities
-site_description: A community-curate catalogue of Python modules that are notably useful for the Digital Humanities.
+site_description: A community-curated catalogue of Python modules that are notably useful for the Digital Humanities.
 
 repo_name: telota/python-for-the-humanities
 repo_url: https://github.com/telota/python-for-the-humanities
-edit_uri: edit/master/docs/
 
 theme: material
 markdown_extensions:
