@@ -1,0 +1,19 @@
+{% extends "partials/header.html" %}
+
+{% block site_name %}
+<nav>
+  <ul class="md-tabs__list">
+    {% for nav_item in nav %}
+      {% if nav_item.active %}
+        <span class="md-header-nav__parent">{{ nav_item.title }}</span>
+      {% else %}
+        <a href="{{ nav_item.url }}" title="{{ nav_item.title }}" class="md-header-nav__parent">
+          {{ nav_item.title }}
+        </a>
+      {% endif %}
+
+
+    {% endfor %}
+  </ul>
+</nav>
+{% endblock %}

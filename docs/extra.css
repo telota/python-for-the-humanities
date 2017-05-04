@@ -1,0 +1,4 @@
+.md-header-nav__parent:after {
+    margin-left: 1em;
+    content: " ";
+}

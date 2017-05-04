@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block site_meta %}
+    {{ super() }}
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src https://img.shields.io; object-src 'none'">
+{% endblock %}
+
+{% block header %}
+    {% include "partials/alt-header.html" %}
+{% endblock %}
