@@ -1,9 +1,10 @@
-- generate `index.md` contents from one yaml-file per library
-  - can one hook into `mkdocs`?
-- rss feed
+- toc at most level two
+- pypi shields.io issue
 - add contents
-- layout
-  - remove left toc
-  - remove footer
-  - link Contributing in the header
+- write introduction and criteria
+- readme.md for github
 - host as gh-page
+- rss feed
+- automated link checks
+
+- [use a mkdocs plugin](https://github.com/mkdocs/mkdocs/issues/206) for generating `index.md`
