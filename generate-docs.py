@@ -20,7 +20,6 @@ For a list of general recommendations on Python libraries check out
 [Awesome Python](https://awesome-python.com/)."""
 
 
-
 def read_items() -> List[Dict]:
     result = []
     for item_file in ITEMS_DIR.glob('*.yml'):
@@ -69,10 +68,10 @@ def format_item(item: Dict[str, str]) -> str:
     name = item['name']
     result = [f'#### {name}\n']
 
-    result.append(f'![license](https://img.shields.io/pypi/l/{name})')
-    result.append(f'![version](https://img.shields.io/pypi/v/{name})')
-    result.append(f'![pyversions](https://img.shields.io/pypi/pyversions/{name})')
-    result.append(f'![maturity](https://img.shields.io/pypi/status/{name})')
+    result.append(f'![license](https://img.shields.io/pypi/l/{name}.svg)')
+    result.append(f'![version](https://img.shields.io/pypi/v/{name}.svg)')
+    result.append(f'![pyversions](https://img.shields.io/pypi/pyversions/{name}.svg)')
+    result.append(f'![maturity](https://img.shields.io/pypi/status/{name}.svg)')
 
     github_repo = item.get('github_repo')
     if github_repo is not None:
@@ -100,6 +99,7 @@ def format_item(item: Dict[str, str]) -> str:
 
 def main() -> None:
     write_index_md(group_and_sort_items(read_items()))
+
 
 if __name__ == '__main__':
     main()
