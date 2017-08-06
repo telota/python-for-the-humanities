@@ -1,5 +1,5 @@
 site_name: Python for the Humanities
-site_description: A community-curated catalogue of Python modules that are notably useful for the Digital Humanities.
+site_description: A community-curated catalogue of Python modules that are notably useful for the Humanities.
 
 pages:
   - Catalogue: 'index.md'
