@@ -1,6 +1,4 @@
 name: grapheme
-section: Linguistics
-subsection: Orthography
 github_repo: alvinlindstam/grapheme
 description: >
   The grapheme package implements functions to operate on unicode strings

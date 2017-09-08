@@ -20,37 +20,26 @@ For a list of general recommendations on Python libraries check out
 [Awesome Python](https://awesome-python.com/)."""
 
 
-def read_items() -> List[Dict]:
-    result = []
-    for item_file in ITEMS_DIR.glob('*.yml'):
+def read_sections() -> OrderedDict:
+    sections = {}
+    for section in ITEMS_DIR.iterdir():
+        sections[section.name] = read_subsections(section)
+    return OrderedDict(sorted(sections.items(), key=itemgetter(0)))
+
+
+def read_subsections(section: Path) -> OrderedDict:
+    subsections = {}
+    for subsection in section.iterdir():
+        subsections[subsection.name] = read_items(subsection)
+    return OrderedDict(sorted(subsections.items(), key=itemgetter(0)))
+
+
+def read_items(subsection: Path) -> List[Dict]:
+    items = []
+    for item_file in subsection.glob('*.yml'):
         with open(item_file, 'rt') as f:
-            result.append(load_yaml(f))
-    return result
-
-
-def group_and_sort_items(items: List[Dict]) -> OrderedDict:
-    def group_by(items: List, key) -> Dict[str, List]:
-        result = defaultdict(list)
-        for item in items:
-            result[item[key]].append(item)
-        return result
-
-    def key_sorted_mapping(mapping: Dict) -> OrderedDict:
-        return OrderedDict(sorted(mapping.items(), key=itemgetter(0)))
-
-    sections = key_sorted_mapping(group_by(items, 'section'))
-
-    for section, items in sections.items():
-        assert all(x[0].isupper() for x in section.split())
-        subsections = key_sorted_mapping(group_by(items, 'subsection'))
-
-        for subsection, items in subsections.items():
-            assert all(x[0].isupper() for x in subsection.split())
-            subsections[subsection] = sorted(items, key=itemgetter('name'))
-
-        sections[section] = subsections
-
-    return sections
+            items.append(load_yaml(f))
+    return sorted(items, key=itemgetter('name'))
 
 
 def write_index_md(sections: OrderedDict) -> None:
@@ -98,7 +87,7 @@ def format_item(item: Dict[str, str]) -> str:
 
 
 def main() -> None:
-    write_index_md(group_and_sort_items(read_items()))
+    write_index_md(read_sections())
 
 
 if __name__ == '__main__':
