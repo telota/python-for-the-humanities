@@ -12,12 +12,29 @@ PROJECT_DIR = Path(__file__).parent
 ITEMS_DIR = PROJECT_DIR / 'items'
 TARGET_FILE = PROJECT_DIR / 'docs' / 'index.md'
 
-PROLOGUE = """# Python for the Humanities
+PROLOGUE = """
+# Python for the Humanities
 
 Lorem ipsum motivationales
 
 For a list of general recommendations on Python libraries check out
-[Awesome Python](https://awesome-python.com/)."""
+[Awesome Python](https://awesome-python.com/).
+""".lstrip()
+
+ITEM_HEADING_AND_SHIELDS = """
+#### {name}
+
+![license](https://img.shields.io/pypi/l/{name}.svg)
+![version](https://img.shields.io/pypi/v/{name}.svg)
+![pyversions](https://img.shields.io/pypi/pyversions/{name}.svg)
+![maturity](https://img.shields.io/pypi/status/{name}.svg)
+""".lstrip()
+
+ITEM_GITHUB_SHIELDS = """
+![stars](https://img.shields.io/github/stars/{github_repo}.svg)
+![contributors](https://img.shields.io/github/contributors/{github_repo}.svg)
+![forks](https://img.shields.io/github/forks/{github_repo}.svg)
+""".lstrip()
 
 
 def read_sections() -> OrderedDict:
@@ -46,7 +63,7 @@ def write_index_md(sections: OrderedDict) -> None:
     with open(TARGET_FILE, 'wt') as f:
         print(PROLOGUE, file=f)
         for section_name, subsections in sections.items():
-            print(f'\n\n## {section_name}\n', file=f)
+            print(f'## {section_name}\n', file=f)
             for subsection_name, items in subsections.items():
                 print(f'### {subsection_name}\n', file=f)
                 for item in items:
@@ -55,35 +72,30 @@ def write_index_md(sections: OrderedDict) -> None:
 
 def format_item(item: Dict[str, str]) -> str:
     name = item['name']
-    result = [f'#### {name}\n']
-
-    result.append(f'![license](https://img.shields.io/pypi/l/{name}.svg)')
-    result.append(f'![version](https://img.shields.io/pypi/v/{name}.svg)')
-    result.append(f'![pyversions](https://img.shields.io/pypi/pyversions/{name}.svg)')
-    result.append(f'![maturity](https://img.shields.io/pypi/status/{name}.svg)')
+    result = ITEM_HEADING_AND_SHIELDS.format(name=name)
 
     github_repo = item.get('github_repo')
     if github_repo is not None:
         assert github_repo.count('/') == 1
-        result.append(f'![stars](https://img.shields.io/github/stars/{github_repo}.svg)')
-        result.append(f'![contributors](https://img.shields.io/github/contributors/{github_repo}.svg)')
-        result.append(f'![forks](https://img.shields.io/github/forks/{github_repo}.svg)')
+        result += ITEM_GITHUB_SHIELDS.format(github_repo=github_repo)
 
-    result.append('')
+    result += '\n'
+
     description = item['description']
     assert name in description
-    result.append(description.replace(name, f'[{name}](https://pypi.python.org/pypi/{name})', 1))
+    result += description.replace(
+        name, f'[{name}](https://pypi.python.org/pypi/{name})', 1)
 
     footer = []
     docs_url = item.get('docs_url')
     if docs_url is not None:
-        footer.append(f'[documentation](docs_url)')
+        footer.append(f'[documentation]({docs_url})')
     if github_repo is not None:
         footer.append(f'[code repository](https://github.com/{github_repo})')
     if footer:
-        result.append(' &ndash; '.join(footer))
+        result += '\n' + ' &ndash; '.join(footer)
 
-    return '\n'.join(result)
+    return result + '\n'
 
 
 def main() -> None:

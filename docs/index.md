@@ -5,7 +5,6 @@ Lorem ipsum motivationales
 For a list of general recommendations on Python libraries check out
 [Awesome Python](https://awesome-python.com/).
 
-
 ## Data Structures
 
 ### Graphs
@@ -22,8 +21,7 @@ For a list of general recommendations on Python libraries check out
 
 [neomodel](https://pypi.python.org/pypi/neomodel) provides an Object Graph Mapper for [neo4j](https://neo4j.org/) backends.
 
-[documentation](docs_url) &ndash; [code repository](https://github.com/robinedwards/neomodel)
-
+[documentation](https://neomodel.readthedocs.io) &ndash; [code repository](https://github.com/robinedwards/neomodel)
 
 ## Linguistics
 
@@ -42,6 +40,7 @@ For a list of general recommendations on Python libraries check out
 The [grapheme](https://pypi.python.org/pypi/grapheme) package implements functions to operate on unicode strings that include graphemes which are represented by more than one code point.
 
 [code repository](https://github.com/alvinlindstam/grapheme)
+
 #### rasmipy
 
 ![license](https://img.shields.io/pypi/l/rasmipy.svg)
@@ -55,3 +54,4 @@ The [grapheme](https://pypi.python.org/pypi/grapheme) package implements functio
 [rasmipy](https://pypi.python.org/pypi/rasmipy) is a module to remove diacritics from arabic strings. It is part of a suite that provides implementations for various languages.
 
 [code repository](https://github.com/telota/rasmipy)
+
