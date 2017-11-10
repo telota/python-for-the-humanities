@@ -5,7 +5,7 @@ from operator import itemgetter
 from pathlib import Path
 from typing import Dict, List
 
-from yaml import load as load_yaml
+from markdown import Markdown
 
 
 PROJECT_DIR = Path(__file__).parent
@@ -19,6 +19,7 @@ Lorem ipsum motivationales
 
 For a list of general recommendations on Python libraries check out
 [Awesome Python](https://awesome-python.com/).
+
 """.lstrip()
 
 ITEM_HEADING_AND_SHIELDS = """
@@ -37,6 +38,9 @@ ITEM_GITHUB_SHIELDS = """
 """.lstrip()
 
 
+markdown_parser = Markdown(extensions=['markdown.extensions.meta'])
+
+
 def read_sections() -> OrderedDict:
     sections = {}
     for section in ITEMS_DIR.iterdir():
@@ -53,21 +57,31 @@ def read_subsections(section: Path) -> OrderedDict:
 
 def read_items(subsection: Path) -> List[Dict]:
     items = []
-    for item_file in subsection.glob('*.yml'):
+    for item_file in subsection.glob('*.md'):
         with open(item_file, 'rt') as f:
-            items.append(load_yaml(f))
+            text = f.read()
+        item = {k: None for k in ('github_repo', 'docs_url')}
+        markdown_parser.convert(text)
+        item.update({k: '\n'.join(v) for k, v in markdown_parser.Meta.items()})
+        item['name'] = item_file.stem
+        item['description'] = text.split('\n\n', 1)[1]
+        items.append(item)
     return sorted(items, key=itemgetter('name'))
 
 
-def write_index_md(sections: OrderedDict) -> None:
-    with open(TARGET_FILE, 'wt') as f:
-        print(PROLOGUE, file=f)
-        for section_name, subsections in sections.items():
-            print(f'## {section_name}\n', file=f)
-            for subsection_name, items in subsections.items():
-                print(f'### {subsection_name}\n', file=f)
-                for item in items:
-                    print(format_item(item), file=f)
+def generate_catalogue_md(sections: OrderedDict) -> None:
+    result = PROLOGUE
+    for section_name, subsections in sections.items():
+        assert all(x[0].isupper() for x in section_name.split()), \
+            'All words in a section name must start with an uppercase character.'
+        result += f'## {section_name}\n\n'
+        for subsection_name, items in subsections.items():
+            assert all(x[0].isupper() for x in subsection_name.split()), \
+                'All words in a section name must start with an uppercase character.'
+            result += f'### {subsection_name}\n\n'
+            for item in items:
+                result += format_item(item) + '\n'
+    return result
 
 
 def format_item(item: Dict[str, str]) -> str:
@@ -98,9 +112,13 @@ def format_item(item: Dict[str, str]) -> str:
     return result + '\n'
 
 
-def main() -> None:
-    write_index_md(read_sections())
+def main(contents, page) -> None:
+    if page.title != 'Catalogue':
+        return None
+    else:
+        return generate_catalogue_md(read_sections())
 
 
 if __name__ == '__main__':
-    main()
+    from types import SimpleNamespace
+    print(main(None, SimpleNamespace(title='Catalogue')))

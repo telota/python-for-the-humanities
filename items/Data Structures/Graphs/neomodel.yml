@@ -1,6 +1,0 @@
-name: neomodel
-docs_url: https://neomodel.readthedocs.io
-github_repo: robinedwards/neomodel
-description: >
-  neomodel provides an Object Graph Mapper for [neo4j](https://neo4j.org/)
-  backends.
