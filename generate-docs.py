@@ -10,7 +10,6 @@ from markdown import Markdown
 
 PROJECT_DIR = Path(__file__).parent
 ITEMS_DIR = PROJECT_DIR / 'items'
-TARGET_FILE = PROJECT_DIR / 'docs' / 'index.md'
 
 PROLOGUE = """
 # Python for the Humanities
