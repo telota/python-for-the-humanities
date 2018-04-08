@@ -10,12 +10,8 @@ repo_url: https://github.com/telota/python-for-the-humanities
 edit_uri: /edit/  # dummy to bypass a bug
 
 theme:
-  name: material
+  name: mkdocs
   custom_dir: layout
-  max_toc_depth: 2
-  palette:
-    primary: blue grey
-    accent: indigo
 extra_css:
   - extra.css
 markdown_extensions:

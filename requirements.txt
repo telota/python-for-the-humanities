@@ -1,2 +1,1 @@
 git+git://github.com/funkyfuture/mkdocs.git@pfth#egg=mkdocs
-git+git://github.com/funkyfuture/mkdocs-material.git@pfth#egg=mkdocs-material
