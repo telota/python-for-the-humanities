@@ -1,0 +1,43 @@
+body {
+    background: floralwhite;
+    font-size: 16px;
+}
+
+a {
+    color: darkblue;
+}
+
+a:hover {
+    color: darkblue;
+}
+
+a:visited {
+    color: darkblue;
+}
+
+.navbar {
+    background: darkblue;
+    color: floralwhite;
+}
+
+.navbar .navbar-collapse .navbar-nav > .active > a {
+    background-color: darkblue;
+}
+
+.navbar .navbar-collapse .navbar-nav  a:hover {
+    background-color: darkblue;
+}
+
+.navbar .navbar-collapse .navbar-right li:nth-child(1) {
+    display: none;
+}
+
+.navbar .navbar-collapse .navbar-right li:nth-child(2) {
+    display: none;
+}
+
+.col-md-9 img {
+    border: none;
+    margin: 0;
+    padding: 0;
+}
