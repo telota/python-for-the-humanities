@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from collections import defaultdict, OrderedDict
+from collections import OrderedDict
 from operator import itemgetter
 from pathlib import Path
 from typing import Dict, List
@@ -14,10 +14,22 @@ ITEMS_DIR = PROJECT_DIR / 'items'
 PROLOGUE = """
 # Python for the Humanities
 
-Lorem ipsum motivationales
+Python's superior, clean, expressive syntax makes it well suited for users without a 
+computer science background to tackle computational problems on their own. It allows
+rather rapid, iterative development of software components while writing clean, well 
+maintainable code.
+
+The Python community established a vast amount of resources, among them are a lot of 
+libraries and frameworks that address all sorts of problems and eventually make
+Python quiet a universal programming language.
+
+This catalogue aims to help navigate through this large and diverse ecosystem by
+collecting both well-established and rather unknown pearls that are particularly 
+useful in the field of the Humanities.
 
 For a list of general recommendations on Python libraries check out
-[Awesome Python](https://awesome-python.com/).
+[Awesome Python](https://awesome-python.com/). This collection relies on reader's 
+feedback, see [how to contribute](contributing/).
 
 """.lstrip()
 
@@ -57,7 +69,7 @@ def read_subsections(section: Path) -> OrderedDict:
 def read_items(subsection: Path) -> List[Dict]:
     items = []
     for item_file in subsection.glob('*.md'):
-        with open(item_file, 'rt') as f:
+        with item_file.open('rt') as f:
             text = f.read()
         item = {k: None for k in ('github_repo', 'docs_url')}
         markdown_parser.convert(text)
