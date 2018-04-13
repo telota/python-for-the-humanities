@@ -20,6 +20,14 @@ a:visited {
     color: floralwhite;
 }
 
+.navbar .navbar-collapse .navbar-nav > .active > a {
+    background-color: darkblue;
+}
+
+.navbar .navbar-collapse .navbar-nav  a:hover {
+    background-color: darkblue;
+}
+
 .navbar .navbar-collapse .navbar-right li:nth-child(1) {
     display: none;
 }
@@ -31,4 +39,5 @@ a:visited {
 .col-md-9 img {
     border: none;
     margin: 0;
+    padding: 0;
 }
