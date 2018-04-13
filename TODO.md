@@ -1,11 +1,6 @@
 # Pre public release
 
-- FIX mkdocs-material to work w/ mkdocs 1.0.dev 
-- is the edit-link visible? it shouldn't
-- toc at most level two (https://github.com/mkdocs/mkdocs/pull/1272)
-- add contents (pyzotero, emory library, exist-client, …)
-- write introduction and finalize criteria
-- update build instructions
+- add contents (pyzotero, emory library, exist-client, numeral …)
 - readme.md for github
   - description
   - hint on contributing
