@@ -7,12 +7,13 @@
 
 ## Criteria
 
-- The library must be available on the
-  [Python Package Index](https://pypi.python.org).
+- The library must be available on the [Python Package Index](https://pypi.org).
 - It shall not be a Python 2-only package.
 - A code review must not reveal unmaintainable gibberish and common practices
   that implement quality assurance should be in place.
-- TODO
+- It's obviously impossible to clearly distinct which fields of problems are
+  particularly common in the "Humanities", hence updating the criteria is part
+  of the process in which users are encouraged to participate.
 
 
 ## Guidelines
@@ -36,13 +37,14 @@ be included in the metadata section assigned to the `docs_url` field, the URL
 must be provided with `https` as protocol when available as such.
 
 If the source code is hosted on [GitHub](https://github.com), it must be
-denoted as `<username>/<repository_name` assigned to the `github_repo` field.
+denoted as `<username>/<repository_name>` assigned to the `github_repo` field.
 
 When adding a new section respectively folder, keep in mind that all words must
 start with an uppercase character.
 
-If you see more data on a package as appropriate to include, please open an
-issue with your proposal.
+If you figure more or updated information on a package would be appropriate to
+include, please open an issue with your proposal.
+
 
 ## Building
 
@@ -54,5 +56,4 @@ Building the web page:
 
     make
     # or if GNU make is not available:   :-(
-    ./generate-docs.py
     mkdocs build
